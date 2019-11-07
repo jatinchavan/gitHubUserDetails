@@ -1,0 +1,92 @@
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px; 
+    border: hidden;
+}
+
+.topBar {
+    width : 100%; 
+    background-color:#eaa221; 
+    margin-top: 20px
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 80%;
+    margin-left: 15%
+}
+
+.firstColumn {
+    width: 20%;
+    border-right: 0px solid;
+}
+
+.secondColumn {
+    width: 60%;
+    border-left: 0px solid;
+    border-right: 0px solid;
+}
+
+.thirdColumn {
+    border-left: 0px solid;
+}
+
+.btnDetails {
+    margin-top: 70%;
+    float: right;
+    width: 120px;
+    margin-right: 10%;
+    border-radius: 5px;
+    background-color: transparent;
+    border-color: mediumturquoise;
+}
+
+.btnCollapse {
+    margin-top: 70%;
+    float: right;
+    width: 120px;
+    margin-right: 10%;
+    border-radius: 5px;
+    background-color: transparent;
+    border-color: mediumturquoise;
+    display: none
+}
+
+.sortDropdown {
+    background-color: white; 
+    border: none; 
+    padding: 3px; 
+    width: 300px;
+}
+
+.searchBox {
+    margin-left: 415px;
+    width: 390px;
+}
+.data:nth-of-type(odd){
+    background-color: aliceblue
+}
+
+.loadingScreen {
+    z-index: 100000;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.loadingIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    margin-top: -10px;
+}

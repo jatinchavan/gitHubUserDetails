@@ -1,0 +1,98 @@
+<div class="container">
+    <!--Added view logic for masking screen-->
+    <div class="loadingScreen" id="loadingScreen" style="display: none">
+        <div class="loadingIcon">
+            Loading...
+        </div>
+    </div>
+    <div class="row">
+        <nav class="navbar navbar-expand-md navbar-dark topBar">
+            <div>
+                <!--Added dropdown for sort option and text box for searching-->
+                <!--Added change event on dropdown to perform selected sort-->
+                <select class="dropdown-toggle" class="sortDropdown" (change)="onSelect($event)">
+                    <option value="" disabled>Sort By Name (A-Z)</option>>
+                    <option> Sort By Name (A-Z) </option>
+                    <option> Sort By Name (Z-A) </option>
+                    <option> Sort By Rank &#8593;</option>
+                    <option> Sort By Rank &#8595;</option>
+                </select>
+                <!--Added keyup event on textbox to filter search on each keystroke-->
+                <ng-template #toolTip>Type username to be searched</ng-template>
+                <input type="text" placeholder="Search" class="searchBox" (keyup) ="onType($event)" [ngbTooltip]="toolTip">
+                <span class="search-icon">
+                    <!--Addded class to show search icon-->
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+        </nav>
+        <!--Added to show total count of records from reponse fetched using api-->
+        <div *ngIf="userDetails" style="padding-top: 10px;">
+            <label>TotalCount : </label>
+            <span> {{userDetails.items.length}}</span>
+        </div>
+        <!--Using table to show the data split in 3 columns for Avatar,Info & Details-->
+        <!--Applied ngIf so that table will exist only if data is present-->
+        <table *ngIf="userDetails" class="table table-bordered table-sm">
+            <tbody style="width: 80%">
+                <!--Using ngFor to itreate over data items and create row for each, also added pagination & variable i to store index-->
+                <tr *ngFor="let users of userDetails.items | paginate: paginationConfig; let i = index">
+                    <!-- <td style="display:none">{{i}}</td> -->
+                    <td class="firstColumn">
+                        <img class="avatar" src="{{users.avatar_url}}">
+                    </td>
+                    <td class="secondColumn">
+                        <div>
+                            <h1 *ngIf="users.fullName">{{users.fullName.name}}</h1>
+                            <h1>{{users.login}}</h1>
+                            <label>Profile URL :</label>
+                            <span><a href="{{users.html_url}}" target="_blank"> {{users.html_url}}</a></span>
+                            <div style="padding-top: 2%;">
+                                <label>isAdmin :</label>
+                                <span> {{users.site_admin}}</span>
+                            </div>
+                            <div>
+                                <label>Rank :</label>
+                                <span> {{users.score}}</span>
+                            </div>
+                            <!--Added display block to show details, when clicked on details button. Appended index with id to make it unique-->
+                            <div id="detailsBlock_{{i}}" style="display: none">
+                                <ng-container *ngIf="repoDetails">
+                                    <br><br>
+                                    <!--Iterate over fetched repository details and display URL & language-->
+                                    <div *ngFor="let data of repoDetails;" class="data">
+                                        <label>{{data.name}} : </label>
+                                        <span style="float: right;">{{data.language}}</span>
+                                        <br>
+                                        <label>Repository Link : </label>
+                                        <span style="float: right;"><a href="{{data.html_url}}" target="_blank">{{data.html_url}}</a></span>
+                                        <br>
+                                        <label>Watchers Count :</label>
+                                        <span style="float: right;">{{data.watchers_count}}</span>
+                                        <br>
+                                        <label>StarGazers Count :</label>
+                                        <span style="float: right;">{{data.stargazers_count}}</span>
+                                        <br>
+                                        <label>Forks Count :</label>
+                                        <span style="float: right;">{{data.forks_count}}</span>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </td>
+                    <!--Added logic to show/hide details/collapse button as per condition,and click event-->
+                    <td class="thirdColumn">
+                        <!--Tooltip to show action on details button for the user-->
+                        <ng-template #tipContent>Click to check repository details for <b><i>{{users.login}}</i></b></ng-template>
+                        <button class="btnDetails" id="details_{{i}}" (click)="onShow(i,users.login)" [ngbTooltip]="tipContent">Details</button>
+                        <button class="btnCollapse" id="collapse_{{i}}" (click)="onCollapse(i)">Collapse</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!--Added to show pagination-->
+        <div style="margin-left: 60%">
+            <pagination-controls (pageChange)="onPageChange($event)" directionLinks="false" previousLabel="" nextLabel=""></pagination-controls>
+        </div>
+    </div>
+</div>

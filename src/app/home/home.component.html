@@ -1,0 +1,39 @@
+<div style="padding: 10px">
+    <marquee>** Note : This application is developed as a study Assignemnt**</marquee>
+</div>
+<body class="text-center">
+  <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <main role="main" class="inner cover">
+      <h1 class="cover-heading" id="header">Implementation Details.</h1>
+      <ul>
+          <li>Implemented functionality to list GitHubUsers. User list is fetched using github API.</li>
+          <li>Visually appealing and user friendly display.</li>
+          <li>Registered application and uses client Id & Key for API authorization.</li>
+          <li>On initial loading of application default result is displayed using API.</li>
+          <li>Implemented a feature to provide Search functionality based on User name.</li>
+          <li>As you type in Searchbox, service is triggered to fetch results for that user name.It is based on timeout(1s) and not for each key storke.</li>
+          <li>Implemented Sorting feature (Based on Username & Rank).</li>
+          <li>Implemented services to fetch individual user based details for repositories using github API.</li>
+          <li>Implemented logic on details button to show users all repositories & their associated language along with few more details.</li>
+          <li>Implemented logic to provide masking of screen while API interaction.</li>
+          <li>Implemented simple routing feature, this page is by default landing page.</li>
+          <li>Implemented Pagination.</li>
+        </ul>
+      <p class="lead">
+        <br>
+        <a routerLink="/appView" class="btn btn-lg btn-success">Get Started -></a>
+      </p>
+    </main>
+
+    
+  </div>
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="../../assets/js/vendor/popper.min.js"></script>
+  <script src="../../dist/js/bootstrap.min.js"></script>
+</body>
